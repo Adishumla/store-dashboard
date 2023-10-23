@@ -8,7 +8,6 @@ import { Content } from '../../blocks/Content'
 import { MediaBlock } from '../../blocks/MediaBlock'
 import { hero } from '../../fields/hero'
 import { slugField } from '../../fields/slug'
-import { populateArchiveBlock } from '../../hooks/populateArchiveBlock'
 import { populatePublishedDate } from '../../hooks/populatePublishedDate'
 import { revalidateProject } from './hooks/revalidateProject'
 
@@ -26,7 +25,7 @@ export const Projects: CollectionConfig = {
   hooks: {
     beforeChange: [populatePublishedDate],
     afterChange: [revalidateProject],
-    afterRead: [populateArchiveBlock],
+    afterRead: [],
   },
   versions: {
     drafts: true,
