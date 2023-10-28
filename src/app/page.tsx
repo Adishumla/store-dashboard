@@ -22,6 +22,12 @@ export default function Home() {
         >
           Admin Logout
         </Link>
+        <Link
+          href="/admin/register"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Admin Register
+        </Link>
 
         <Link
           href="/admin"

@@ -1,10 +1,6 @@
-// page.tsx
-import { NextApiHandler } from "next";
-import React, { useEffect } from "react";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import React from "react";
 
-const Page: NextApiHandler = async (req, res) => {
+export const DashboardPage: React.FC = () => {
   return (
     <div>
       <h1>Dashboard</h1>
@@ -12,5 +8,3 @@ const Page: NextApiHandler = async (req, res) => {
     </div>
   );
 };
-
-export default Page;
