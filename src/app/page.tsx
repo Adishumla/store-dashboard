@@ -17,10 +17,10 @@ export default function Home() {
           Test
         </Link>
         <Link
-          href="/admin/login"
+          href="/login"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
-          Admin Login
+          Login
         </Link>
         <Link
           href="/admin/logout "
@@ -29,10 +29,10 @@ export default function Home() {
           Admin Logout
         </Link>
         <Link
-          href="/admin/register"
+          href="/register"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
-          Admin Register
+          Register
         </Link>
 
         <Link
