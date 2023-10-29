@@ -3,6 +3,7 @@ import { buildConfig } from "payload/config";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { ValidateOptions, RichTextField } from "payload/dist/exports/types";
 import Users from "./collections/Users";
+import Sites from "./collections/Sites";
 
 export default buildConfig({
   /* admin: {
@@ -16,6 +17,7 @@ export default buildConfig({
   collections: [
     // Your collections here
     Users,
+    Sites,
   ],
   globals: [
     // Your globals here

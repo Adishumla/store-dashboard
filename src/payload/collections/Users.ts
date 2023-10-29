@@ -1,4 +1,9 @@
 import { CollectionConfig } from "payload/types";
+import { isAdmin, isAdminFieldAccess } from "../access/isAdmin";
+import {
+  isAdminOrSelf,
+  isAdminOrSelfFieldAccess,
+} from "../access/isAdminOrSelf";
 
 const Users: CollectionConfig = {
   slug: "users",
@@ -7,7 +12,10 @@ const Users: CollectionConfig = {
     useAsTitle: "email",
   },
   access: {
-    read: () => true,
+    create: isAdmin,
+    read: isAdminOrSelf,
+    update: isAdminOrSelf,
+    delete: isAdmin,
   },
   fields: [
     {
@@ -17,6 +25,10 @@ const Users: CollectionConfig = {
       required: true,
       saveToJWT: true,
       hasMany: true,
+      access: {
+        read: isAdminOrSelfFieldAccess,
+        update: isAdminFieldAccess,
+      },
       options: [
         {
           label: "Admin",
