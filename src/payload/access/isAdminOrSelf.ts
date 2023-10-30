@@ -1,9 +1,31 @@
 import { Access, FieldAccess } from "payload/types";
 
 export const isAdminOrSelf: Access = ({ req: { user } }) => {
-  return Boolean(user?.roles?.includes("admin") || user?.id === user?.id);
+  // Need to be logged in
+  if (user) {
+    // If user has role of 'admin'
+    if (user.roles?.includes("admin")) {
+      return true;
+    }
+
+    // If any other type of user, only provide access to themselves
+    return {
+      id: {
+        equals: user.id,
+      },
+    };
+  }
+
+  // Reject everyone else
+  return false;
 };
 
-export const isAdminOrSelfFieldAccess: FieldAccess = ({ req: { user } }) => {
-  return Boolean(user?.roles?.includes("admin") || user?.id === user?.id);
+export const isAdminOrSelfFieldAccess: FieldAccess = ({
+  req: { user },
+  doc,
+}) => {
+  // Assuming doc has a user property that holds the user id
+  return Boolean(
+    user && (user.roles?.includes("admin") || user.id === doc.user)
+  );
 };

@@ -4,11 +4,11 @@ import { NextRequest } from "next/server";
 export async function middleware(req: NextRequest) {
   const token = req.cookies.get("payload-token")?.value;
   const page = req.nextUrl.pathname.slice(1);
-  console.log("middleware page: ");
+  /* console.log("middleware page: ");
   console.log(
     "time: ",
     new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString()
-  ); // Check if there's a token before making requests to protected endpoints
+  ); */ // Check if there's a token before making requests to protected endpoints
   //if (token) {
   const authHeaders = {
     Authorization: `JWT ${token}`,

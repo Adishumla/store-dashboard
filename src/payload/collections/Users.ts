@@ -26,7 +26,7 @@ const Users: CollectionConfig = {
       saveToJWT: true,
       hasMany: true,
       access: {
-        read: isAdminOrSelfFieldAccess,
+        create: isAdminFieldAccess,
         update: isAdminFieldAccess,
       },
       options: [

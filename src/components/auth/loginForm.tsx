@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
+import { ReloadIcon } from "@radix-ui/react-icons";
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import * as z from "zod";
@@ -23,6 +24,7 @@ const formSchema = z.object({
 });
 
 export function LoginForm() {
+  const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -33,12 +35,14 @@ export function LoginForm() {
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setLoading(true);
     const response = await fetch("/api/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     });
     const data = await response.json();
+    setLoading(false);
     if (response.ok) {
       toast({
         title: "Login successful",
@@ -94,7 +98,16 @@ export function LoginForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Login</Button>
+        <Button type="submit" disabled={loading}>
+          {loading ? (
+            <>
+              <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+              Please wait
+            </>
+          ) : (
+            "Login"
+          )}
+        </Button>
       </form>
     </Form>
   );
