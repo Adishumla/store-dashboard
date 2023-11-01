@@ -6,7 +6,6 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
       <GetUserEmail />
-
       <div className="flex flex-row items-center gap-2">
         <Button asChild>
           <Link href="/dashboard">Dashboard</Link>

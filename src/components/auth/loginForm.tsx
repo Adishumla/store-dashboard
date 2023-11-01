@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -24,6 +25,7 @@ const formSchema = z.object({
 });
 
 export function LoginForm() {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -49,6 +51,8 @@ export function LoginForm() {
         description: "You are now logged in.",
         duration: 5000,
       });
+      router.refresh();
+      router.push("/");
     } else {
       toast({
         title: "Login failed",
