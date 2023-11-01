@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { NextRequest } from "next/server";
 import GetUserEmail from "@/components/auth/getUser";
 
-export default async function Home(req: NextRequest) {
+export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
       <GetUserEmail />
