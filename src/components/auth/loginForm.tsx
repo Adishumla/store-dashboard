@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect } from "react";
 import { ReloadIcon } from "@radix-ui/react-icons";
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
@@ -26,7 +26,9 @@ const formSchema = z.object({
 
 export function LoginForm() {
   const router = useRouter();
-
+  useEffect(() => {
+    router.prefetch("/");
+  }, [router]);
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
