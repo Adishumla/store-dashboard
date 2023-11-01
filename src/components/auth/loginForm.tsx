@@ -51,7 +51,6 @@ export function LoginForm() {
         description: "You are now logged in.",
         duration: 5000,
       });
-      router.refresh();
       router.push("/");
     } else {
       toast({
