@@ -26,6 +26,7 @@ const formSchema = z.object({
 
 export function LoginForm() {
   const router = useRouter();
+  router.prefetch("/");
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
@@ -44,9 +45,9 @@ export function LoginForm() {
       body: JSON.stringify(values),
     });
     const data = await response.json();
-    setLoading(false);
-    router.push("/");
     if (response.ok) {
+      router.push("/");
+      setLoading(false);
       toast({
         title: "Login successful",
         description: "You are now logged in.",
