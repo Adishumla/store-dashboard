@@ -26,9 +26,9 @@ const formSchema = z.object({
 
 export function LoginForm() {
   const router = useRouter();
-  useEffect(() => {
+  /* useEffect(() => {
     router.prefetch("/");
-  }, [router]);
+  }, [router]); */
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
