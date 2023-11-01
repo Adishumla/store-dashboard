@@ -45,13 +45,13 @@ export function LoginForm() {
     });
     const data = await response.json();
     setLoading(false);
+    router.push("/");
     if (response.ok) {
       toast({
         title: "Login successful",
         description: "You are now logged in.",
         duration: 5000,
       });
-      router.push("/");
     } else {
       toast({
         title: "Login failed",
