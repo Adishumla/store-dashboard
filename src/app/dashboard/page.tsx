@@ -1,6 +1,17 @@
 "use client";
 import React, { useState } from "react";
-import { Metric, DonutChart, BarChart, LineChart } from "@tremor/react";
+import {
+  Metric,
+  DonutChart,
+  BarChart,
+  LineChart,
+  Table,
+  TableHead,
+  TableHeaderCell,
+  TableBody,
+  TableRow,
+  TableCell,
+} from "@tremor/react";
 import { Card } from "@/components/ui/card";
 import CityBarChart from "@/components/CityBarChart";
 import CityLineChart from "@/components/CityLineChart";
@@ -69,7 +80,7 @@ export default function Dashboard() {
             index="name"
             valueFormatter={valueFormatter}
             colors={["indigo"]}
-            customTooltip={CustomTooltip}
+            //customTooltip={CustomTooltip}
             showAnimation={true}
           />
         </Card>
@@ -96,6 +107,24 @@ export default function Dashboard() {
           colors={["slate", "violet", "indigo", "rose", "cyan", "amber"]}
         />
       </div>
+      <Card className="mt-6">
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>City</TableHeaderCell>
+              <TableHeaderCell>Sales</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {cities.map((city) => (
+              <TableRow key={city.name}>
+                <TableCell>{city.name}</TableCell>
+                <TableCell>{valueFormatter(city.sales)}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Card>
       {/* <div className="grid grid-cols-3 gap-4 mt-4">
         <Card className="w-[400px] h-full flex justify-center items-center">
           <CityBarChart data={cities} />
