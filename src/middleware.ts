@@ -21,8 +21,9 @@ export async function middleware(req: NextRequest) {
 
   const data2 = await response2.json();
   //console.log("middleware data2: ", data2);
-  const site = data2.docs?.find((site: { page: string }) => site.page === page);
-
+  const site = data2.docs?.find((site: { page: string }) =>
+    page.startsWith(site.page)
+  );
   if (!site) {
     return NextResponse.next();
   }
@@ -46,10 +47,10 @@ export async function middleware(req: NextRequest) {
   const match = siteMatch?.roles.find((role: string) =>
     data.user?.roles?.includes(role)
   );
-  console.log("middleware-page: ", page);
+  /* console.log("middleware-page: ", page);
   console.log("middleware match: ", match);
   console.log("site: ", site);
-  console.log("middleware siteMatch: ", siteMatch);
+  console.log("middleware siteMatch: ", siteMatch); */
 
   if (match !== undefined) {
     console.log("matched");
