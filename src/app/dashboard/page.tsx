@@ -1,5 +1,4 @@
-"use client";
-import React, { useState } from "react";
+import React from "react";
 import {
   Metric,
   DonutChart,
@@ -15,6 +14,10 @@ import {
 import { Card } from "@/components/ui/card";
 import CityBarChart from "@/components/CityBarChart";
 import CityLineChart from "@/components/CityLineChart";
+import Orders from "@/components/table";
+import { orders } from "@/lib/drizzleTest";
+import Donut from "@/components/donut";
+import TotalSales from "@/components/totalSales";
 
 const cities = [
   {
@@ -42,6 +45,7 @@ const cities = [
     sales: 1398,
   },
 ];
+
 const valueFormatter = (number: number | bigint) =>
   new Intl.NumberFormat("sv-SE", { style: "currency", currency: "SEK" }).format(
     number
@@ -64,12 +68,16 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 export default function Dashboard() {
-  const [value, setValue] = React.useState(null);
+  //const [value, setValue] = React.useState(null);
 
   return (
     <div>
-      <h1>Dashboard</h1>
-      <p>Some dashboard content</p>
+      <div className="flex flex-row gap-4">
+        {/* need to fix this later */}
+        {/* @ts-ignore */}
+        <TotalSales docs={orders.docs} />
+      </div>
+
       <div className="grid grid-cols-3 gap-4">
         <Card className="w-[400px] h-full flex justify-center items-center">
           <BarChart
@@ -78,7 +86,7 @@ export default function Dashboard() {
             yAxisWidth={100}
             categories={["sales"]}
             index="name"
-            valueFormatter={valueFormatter}
+            //valueFormatter={valueFormatter}
             colors={["indigo"]}
             //customTooltip={CustomTooltip}
             showAnimation={true}
@@ -92,47 +100,19 @@ export default function Dashboard() {
             data={cities}
             categories={["sales"]}
             index="name"
-            valueFormatter={valueFormatter}
+            //valueFormatter={valueFormatter}
             colors={["indigo"]}
             showAnimation={true}
           />
         </Card>
-        <DonutChart
-          className="mt-6"
-          data={cities}
-          valueFormatter={valueFormatter}
-          onValueChange={(v) => setValue(v)}
-          category="sales"
-          index="name"
-          colors={["slate", "violet", "indigo", "rose", "cyan", "amber"]}
-        />
+        <Donut orders={orders.docs} />
       </div>
+
       <Card className="mt-6">
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell>City</TableHeaderCell>
-              <TableHeaderCell>Sales</TableHeaderCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {cities.map((city) => (
-              <TableRow key={city.name}>
-                <TableCell>{city.name}</TableCell>
-                <TableCell>{valueFormatter(city.sales)}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        {/* need to fix this later */}
+        {/* @ts-ignore */}
+        <Orders orders={orders} />
       </Card>
-      {/* <div className="grid grid-cols-3 gap-4 mt-4">
-        <Card className="w-[400px] h-full flex justify-center items-center">
-          <CityBarChart data={cities} />
-        </Card>
-        <Card className="w-[400px] h-full flex justify-center items-center">
-          <CityLineChart data={cities} />
-        </Card>
-      </div> */}
     </div>
   );
 }
