@@ -18,6 +18,7 @@ import Orders from "@/components/table";
 import { orders } from "@/lib/drizzleTest";
 import Donut from "@/components/donut";
 import TotalSales from "@/components/totalSales";
+import getOrdersBetweenDates from "@/lib/calculateSales";
 
 const cities = [
   {
@@ -72,12 +73,11 @@ export default function Dashboard() {
 
   return (
     <div>
-      <div className="flex flex-row gap-4">
+      <div className="flex flex-row gap-4 my-2">
         {/* need to fix this later */}
         {/* @ts-ignore */}
-        <TotalSales docs={orders.docs} />
+        <TotalSales docs={orders.docs as Order[]} />
       </div>
-
       <div className="grid grid-cols-3 gap-4">
         <Card className="w-[400px] h-full flex justify-center items-center">
           <BarChart
@@ -105,7 +105,9 @@ export default function Dashboard() {
             showAnimation={true}
           />
         </Card>
-        <Donut orders={orders.docs} />
+        <Card className="w-[300px] h-full flex justify-between items-center flex-col pt-4">
+          <Donut orders={orders} />
+        </Card>
       </div>
 
       <Card className="mt-6">
