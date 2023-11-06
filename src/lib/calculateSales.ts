@@ -3,7 +3,6 @@ const getOrdersBetweenDates = (
   endDate: string,
   orders: any
 ) => {
-  // Parse the start and end dates
   const start = new Date(startDate);
   const end = new Date(endDate);
 

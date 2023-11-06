@@ -19,6 +19,7 @@ import { orders } from "@/lib/drizzleTest";
 import Donut from "@/components/donut";
 import TotalSales from "@/components/totalSales";
 import getOrdersBetweenDates from "@/lib/calculateSales";
+import LineMonthlySales from "@/components/lineMonthlySales";
 
 const cities = [
   {
@@ -93,7 +94,7 @@ export default function Dashboard() {
           />
         </Card>
         <Card className="w-[400px] h-full flex justify-center items-center">
-          <LineChart
+          {/* <LineChart
             yAxisWidth={100}
             curveType="monotone"
             className=""
@@ -103,7 +104,8 @@ export default function Dashboard() {
             //valueFormatter={valueFormatter}
             colors={["indigo"]}
             showAnimation={true}
-          />
+          /> */}
+          <LineMonthlySales orders={orders} />
         </Card>
         <Card className="w-[300px] h-full flex justify-between items-center flex-col pt-4">
           <Donut orders={orders} />
