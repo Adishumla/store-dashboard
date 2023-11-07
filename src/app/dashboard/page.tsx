@@ -20,8 +20,8 @@ import Donut from "@/components/donut";
 import TotalSales from "@/components/totalSales";
 import getOrdersBetweenDates from "@/lib/calculateSales";
 import LineMonthlySales from "@/components/lineMonthlySales";
-import DataTableDemo from "@/components/table2";
-
+/* import { DataTable } from "@/components/table2";
+ */
 const cities = [
   {
     name: "New York",
@@ -117,7 +117,8 @@ export default function Dashboard() {
         {/* need to fix this later */}
         {/* @ts-ignore */}
         <Orders orders={orders} />
-        <DataTableDemo />
+        {/*         <DataTable docs={orders.docs} />
+         */}{" "}
       </Card>
     </div>
   );
