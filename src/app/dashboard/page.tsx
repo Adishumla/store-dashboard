@@ -20,6 +20,7 @@ import Donut from "@/components/donut";
 import TotalSales from "@/components/totalSales";
 import getOrdersBetweenDates from "@/lib/calculateSales";
 import LineMonthlySales from "@/components/lineMonthlySales";
+import DataTableDemo from "@/components/table2";
 
 const cities = [
   {
@@ -79,8 +80,8 @@ export default function Dashboard() {
         {/* @ts-ignore */}
         <TotalSales docs={orders.docs as Order[]} />
       </div>
-      <div className="grid grid-cols-3 gap-4">
-        <Card className="w-[400px] h-full flex justify-center items-center">
+      <div className="flex gap-4">
+        {/* <Card className="w-[400px] h-full flex justify-center items-center">
           <BarChart
             className=""
             data={cities}
@@ -92,8 +93,8 @@ export default function Dashboard() {
             //customTooltip={CustomTooltip}
             showAnimation={true}
           />
-        </Card>
-        <Card className="w-[400px] h-full flex justify-center items-center">
+        </Card> */}
+        <Card className="w-[600px] h-full flex justify-center items-center">
           {/* <LineChart
             yAxisWidth={100}
             curveType="monotone"
@@ -107,7 +108,7 @@ export default function Dashboard() {
           /> */}
           <LineMonthlySales orders={orders} />
         </Card>
-        <Card className="w-[300px] h-full flex justify-between items-center flex-col pt-4">
+        <Card className="w-[600px] h-[320px]">
           <Donut orders={orders} />
         </Card>
       </div>
@@ -116,6 +117,7 @@ export default function Dashboard() {
         {/* need to fix this later */}
         {/* @ts-ignore */}
         <Orders orders={orders} />
+        <DataTableDemo />
       </Card>
     </div>
   );

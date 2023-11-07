@@ -2,15 +2,15 @@
 import { LineChart } from "@tremor/react";
 import { format } from "date-fns";
 
-const valueFormatter = (number) =>
+const valueFormatter = (number: any) =>
   new Intl.NumberFormat("sv-SE", { style: "currency", currency: "SEK" }).format(
     number
   );
 
-const getMonthYear = (date) => format(new Date(date), "yyyy-MM");
+const getMonthYear = (date: any) => format(new Date(date), "yyyy-MM");
 
-const aggregateMonthlySales = (orders) => {
-  const monthlySales = orders.docs.reduce((acc, order) => {
+const aggregateMonthlySales = (orders: any) => {
+  const monthlySales = orders.docs.reduce((acc: any, order: any) => {
     const monthYear = getMonthYear(order.orderDate);
     if (!acc[monthYear]) {
       acc[monthYear] = 0;
@@ -27,14 +27,14 @@ const aggregateMonthlySales = (orders) => {
   }));
 };
 
-const LineMonthlySales = ({ orders }) => {
+const LineMonthlySales = ({ orders }: any) => {
   const chartData = aggregateMonthlySales(orders);
 
   return (
     <LineChart
       yAxisWidth={100}
       curveType="monotone"
-      className=""
+      className=" p-1"
       data={chartData}
       categories={["sales"]}
       index="name"
