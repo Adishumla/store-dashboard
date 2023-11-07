@@ -47,7 +47,7 @@ const Dashboard = ({ orders }: any) => {
   };
 
   const filteredData = value
-    ? cities.filter((city) => city.name === value?.name)
+    ? cities.filter((city) => city.name === (value as { name: string }).name)
     : cities;
 
   useEffect(() => {
