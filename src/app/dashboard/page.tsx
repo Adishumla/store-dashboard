@@ -20,8 +20,11 @@ import Donut from "@/components/donut";
 import TotalSales from "@/components/totalSales";
 import getOrdersBetweenDates from "@/lib/calculateSales";
 import LineMonthlySales from "@/components/lineMonthlySales";
-/* import { DataTable } from "@/components/table2";
- */
+import { DataTable } from "@/components/table2";
+import { ColumnDef } from "@tanstack/react-table";
+import { columns } from "@/lib/ordersColumns";
+import { Document } from "@/lib/type";
+
 const cities = [
   {
     name: "New York",
@@ -114,11 +117,11 @@ export default function Dashboard() {
       </div>
 
       <Card className="mt-6">
-        {/* need to fix this later */}
-        {/* @ts-ignore */}
-        <Orders orders={orders} />
-        {/*         <DataTable docs={orders.docs} />
-         */}{" "}
+        {/* <Orders orders={orders} /> */}
+        <DataTable
+          columns={columns}
+          data={orders.docs as unknown as Document[]}
+        />
       </Card>
     </div>
   );

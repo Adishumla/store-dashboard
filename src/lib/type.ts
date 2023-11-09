@@ -1,16 +1,19 @@
 export interface Document {
+  quantity: number;
+  variationId: any;
+  product: any;
   id: number;
   user: string;
   shippingAddress: string;
   billingAddress: string;
   shippingMethod: string;
   city: string;
-  orderDate: string; // Or use Date type if you'll be converting the string to a Date object
+  orderDate: string;
   items: Item[];
   status: "shipped" | "delivered"; // Enumerate possible values if known
   total: number;
-  updatedAt: string; // Or use Date type if you'll be converting the string to a Date object
-  createdAt: string; // Or use Date type if you'll be converting the string to a Date object
+  updatedAt: string;
+  createdAt: string;
 }
 
 export interface Item {
@@ -30,8 +33,8 @@ export interface Product {
   category: Category;
   subCategory: SubCategory;
   images: Image[];
-  updatedAt: string; // Or use Date type if you'll be converting the string to a Date object
-  createdAt: string; // Or use Date type if you'll be converting the string to a Date object
+  updatedAt: string;
+  createdAt: string;
 }
 
 export interface Variation {
@@ -45,15 +48,15 @@ export interface Variation {
 export interface Category {
   id: number;
   title: string;
-  updatedAt: string; // Or use Date type if you'll be converting the string to a Date object
-  createdAt: string; // Or use Date type if you'll be converting the string to a Date object
+  updatedAt: string;
+  createdAt: string;
 }
 
 export interface SubCategory {
   id: number;
   title: string;
-  updatedAt: string; // Or use Date type if you'll be converting the string to a Date object
-  createdAt: string; // Or use Date type if you'll be converting the string to a Date object
+  updatedAt: string;
+  createdAt: string;
 }
 
 export interface Image {

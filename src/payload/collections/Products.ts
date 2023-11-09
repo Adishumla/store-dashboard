@@ -86,12 +86,7 @@ const Products: CollectionConfig = {
       relationTo: "subCategories",
       hasMany: false,
     },
-    /* {
-      name: "image",
-      type: "upload",
-      relationTo: "media",
-      required: true,
-    }, */
+
     {
       name: "images",
       type: "array",

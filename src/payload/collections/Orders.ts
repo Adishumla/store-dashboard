@@ -74,6 +74,11 @@ const Orders: CollectionConfig = {
           type: "number",
           required: true,
         },
+        {
+          name: "variationId",
+          type: "text",
+          required: true,
+        },
       ],
 
       required: true,
