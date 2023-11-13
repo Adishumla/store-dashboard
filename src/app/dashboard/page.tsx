@@ -25,33 +25,6 @@ import { ColumnDef } from "@tanstack/react-table";
 import { columns } from "@/lib/ordersColumns";
 import { Document } from "@/lib/type";
 
-const cities = [
-  {
-    name: "New York",
-    sales: 9800,
-  },
-  {
-    name: "London",
-    sales: 4567,
-  },
-  {
-    name: "Hong Kong",
-    sales: 3908,
-  },
-  {
-    name: "San Francisco",
-    sales: 2400,
-  },
-  {
-    name: "Singapore",
-    sales: 1908,
-  },
-  {
-    name: "Zurich",
-    sales: 1398,
-  },
-];
-
 const valueFormatter = (number: number | bigint) =>
   new Intl.NumberFormat("sv-SE", { style: "currency", currency: "SEK" }).format(
     number
@@ -84,31 +57,7 @@ export default function Dashboard() {
         <TotalSales docs={orders.docs as Order[]} />
       </div>
       <div className="flex gap-4">
-        {/* <Card className="w-[400px] h-full flex justify-center items-center">
-          <BarChart
-            className=""
-            data={cities}
-            yAxisWidth={100}
-            categories={["sales"]}
-            index="name"
-            //valueFormatter={valueFormatter}
-            colors={["indigo"]}
-            //customTooltip={CustomTooltip}
-            showAnimation={true}
-          />
-        </Card> */}
         <Card className="w-[600px] h-full flex justify-center items-center">
-          {/* <LineChart
-            yAxisWidth={100}
-            curveType="monotone"
-            className=""
-            data={cities}
-            categories={["sales"]}
-            index="name"
-            //valueFormatter={valueFormatter}
-            colors={["indigo"]}
-            showAnimation={true}
-          /> */}
           <LineMonthlySales orders={orders} />
         </Card>
         <Card className="w-[600px] h-[320px]">
@@ -117,7 +66,6 @@ export default function Dashboard() {
       </div>
 
       <Card className="mt-6">
-        {/* <Orders orders={orders} /> */}
         <DataTable
           columns={columns}
           data={orders.docs as unknown as Document[]}
