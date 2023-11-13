@@ -43,11 +43,13 @@ import { Document, Product, RootObject, Item } from "@/lib/type";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  filterColumnName?: string;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  filterColumnName = "user",
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -83,18 +85,21 @@ export function DataTable<TData, TValue>({
     onColumnFiltersChange: setColumnFilters,
     onColumnVisibilityChange: setColumnVisibility,
   });
+  const filterColumn = table.getColumn(filterColumnName);
 
   return (
     <div className="w-full rounded-md">
       <div className="flex items-center py-4 px-4 ">
-        <Input
-          placeholder="Filter users..."
-          value={(table.getColumn("user")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("user")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
+        {filterColumn && (
+          <Input
+            placeholder={`Filter ${filterColumnName}...`}
+            value={(filterColumn.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              filterColumn.setFilterValue(event.target.value)
+            }
+            className="max-w-sm"
+          />
+        )}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
