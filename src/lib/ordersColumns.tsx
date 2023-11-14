@@ -122,16 +122,13 @@ export const columns: ColumnDef<Document>[] = [
       <ul>
         {info.getValue<Document[]>().map((item: Document, index: number) => {
           const variation = item.product.variations.find(
-            (v: { _order: { toString: () => any } }) =>
-              v._order.toString() === item.variationId
+            (v: { _order: any }) => v._order === item.variationId
           );
           return (
             <li key={index}>
               {item.product.title} - Qty: {item.quantity}
-              {/* Display variation details if found */}
               {variation && (
                 <span>
-                  {" "}
                   - Size: {variation.size}, Color: {variation.color}
                 </span>
               )}
