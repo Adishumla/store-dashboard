@@ -23,38 +23,13 @@ import LineMonthlySales from "@/components/lineMonthlySales";
 import { DataTable } from "@/components/table2";
 import { ColumnDef } from "@tanstack/react-table";
 import { columns } from "@/lib/ordersColumns";
-import { Document } from "@/lib/type";
-
-const valueFormatter = (number: number | bigint) =>
-  new Intl.NumberFormat("sv-SE", { style: "currency", currency: "SEK" }).format(
-    number
-  );
-
-const CustomTooltip = ({ active, payload, label }: any) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="text-sm shadow-lg rounded-lg bg-gray-800 text-white p-3 w-42 h-48">
-        <div className="flex justify-center">
-          <img src="https://picsum.photos/200" className="w-28 h-28 rounded" />
-        </div>
-        <p className="font-bold">{label}</p>
-        <p>{`Sales: ${valueFormatter(payload[0].value)}`}</p>
-      </div>
-    );
-  }
-
-  return null;
-};
+import { Document, RootObject } from "@/lib/type";
 
 export default function Dashboard() {
-  //const [value, setValue] = React.useState(null);
-
   return (
     <div>
       <div className="flex flex-row gap-4 my-2">
-        {/* need to fix this later */}
-        {/* @ts-ignore */}
-        <TotalSales docs={orders.docs as Order[]} />
+        <TotalSales docs={orders.docs as unknown as Document[]} />
       </div>
       <div className="flex gap-4">
         <Card className="w-[600px] h-full flex justify-center items-center">

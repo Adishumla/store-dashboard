@@ -9,6 +9,9 @@ module.exports = withPayload(
     experimental: {
       serverActions: true,
     },
+    images: {
+      domains: ["zbmovlolkpbhmleidapp.supabase.co"],
+    },
   },
   {
     // The second argument to `withPayload`

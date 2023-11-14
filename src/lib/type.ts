@@ -17,6 +17,7 @@ export interface Document {
 }
 
 export interface Item {
+  variationId: number;
   _order: number;
   id: string;
   quantity: number;

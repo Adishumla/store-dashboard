@@ -1,25 +1,8 @@
 import { Card } from "./ui/card";
 import { Metric, Text, BadgeDelta, DeltaType } from "@tremor/react";
+import { Document } from "payload/types";
 
-type Item = {
-  id: number;
-  quantity: number;
-  product: {
-    title: string;
-  };
-};
-
-type docs = {
-  id: number;
-  status: string;
-  user: string;
-  items: Item;
-  total: number;
-  updatedAt: string;
-  createdAt: string;
-};
-
-export default function TotalSales({ docs }: { docs: docs[] }) {
+export default function TotalSales({ docs }: { docs: Document[] }) {
   const totalSum = docs.reduce((acc, order) => acc + order.total, 0);
 
   const previousMonthTotal = 1000;
