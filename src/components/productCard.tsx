@@ -1,15 +1,17 @@
 import { Product } from "@/lib/type";
+import Image from "next/image";
 
 export default function ProductCard({ product }: { product: Product }) {
   console.log(product);
   return (
     <div className="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
-      {/* Image section */}
       {product.images && product.images.length > 0 && (
-        <img
+        <Image
           className="w-full h-56 object-cover object-center"
           src={product.images[0].imageUrl}
           alt={product.images[0].altText}
+          width={200}
+          height={200}
         />
       )}
 
@@ -17,7 +19,6 @@ export default function ProductCard({ product }: { product: Product }) {
         <h3 className="text-lg font-semibold text-gray-800">{product.title}</h3>
         <p className="text-gray-600 mt-1">{product.description}</p>
 
-        {/* Price section */}
         <div className="flex items-baseline mt-2">
           <span className="text-gray-800 font-bold text-xl">
             {product.price}
@@ -25,7 +26,6 @@ export default function ProductCard({ product }: { product: Product }) {
           <span className="ml-1 text-sm text-gray-600">SEK</span>
         </div>
 
-        {/* Variations section */}
         {product.variations && product.variations.length > 0 && (
           <div className="mt-4">
             <h4 className="text-md font-semibold text-gray-800">Variations:</h4>
