@@ -2,7 +2,7 @@ import React from "react";
 import { orders } from "@/lib/drizzleTest";
 import { Document, Item, RootObject, Product } from "@/lib/type";
 import { productsColumns } from "@/lib/productsColumns";
-import { DataTable } from "@/components/table2";
+import { DataTable } from "@/components/table";
 import { BarChart } from "@tremor/react";
 import ProductsBarChart from "@/components/productsBarChart";
 import MostPopularProduct from "@/components/MostPopularProduct";

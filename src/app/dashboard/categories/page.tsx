@@ -13,7 +13,7 @@ import {
 import { orders } from "@/lib/drizzleTest";
 import { Document, Item, RootObject, Product } from "@/lib/type";
 import { categoriesColumns } from "@/lib/categoriesColumns";
-import { DataTable } from "@/components/table2";
+import { DataTable } from "@/components/table";
 import { BarChart } from "@tremor/react";
 import MostPopularCategory from "@/components/mostPopularCategory";
 import MostRecentlySoldCategory from "@/components/mostRecentlySoldCategory";

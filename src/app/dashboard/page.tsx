@@ -14,13 +14,12 @@ import {
 import { Card } from "@/components/ui/card";
 import CityBarChart from "@/components/CityBarChart";
 import CityLineChart from "@/components/CityLineChart";
-import Orders from "@/components/table";
 import { orders } from "@/lib/drizzleTest";
 import Donut from "@/components/donut";
 import TotalSales from "@/components/totalSales";
 import getOrdersBetweenDates from "@/lib/calculateSales";
 import LineMonthlySales from "@/components/lineMonthlySales";
-import { DataTable } from "@/components/table2";
+import { DataTable } from "@/components/table";
 import { ColumnDef } from "@tanstack/react-table";
 import { columns } from "@/lib/ordersColumns";
 import { Document, RootObject } from "@/lib/type";
