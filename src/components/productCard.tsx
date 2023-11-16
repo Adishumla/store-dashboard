@@ -1,43 +1,64 @@
 import { Product } from "@/lib/type";
 import Image from "next/image";
+import { Button } from "./ui/button";
+import { Separator } from "./ui/separator";
+import { HeartIcon, HeartFilledIcon } from "@radix-ui/react-icons";
 
 export default function ProductCard({ product }: { product: Product }) {
-  console.log(product);
   return (
-    <div className="max-w-sm bg-white rounded-lg shadow-md overflow-hidden">
-      {product.images && product.images.length > 0 && (
-        <Image
-          className="w-full h-56 object-cover object-center"
-          src={product.images[0].imageUrl}
-          alt={product.images[0].altText}
-          width={200}
-          height={200}
-        />
-      )}
-
-      <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-800">{product.title}</h3>
-        <p className="text-gray-600 mt-1">{product.description}</p>
-
-        <div className="flex items-baseline mt-2">
-          <span className="text-gray-800 font-bold text-xl">
-            {product.price}
-          </span>
-          <span className="ml-1 text-sm text-gray-600">SEK</span>
-        </div>
-
-        {product.variations && product.variations.length > 0 && (
-          <div className="mt-4">
-            <h4 className="text-md font-semibold text-gray-800">Variations:</h4>
-            <ul className="list-disc pl-5 text-gray-700">
-              {product.variations.map((variation) => (
-                <li key={variation.id}>
-                  Size: {variation.size}, Color: {variation.color}
-                </li>
-              ))}
-            </ul>
-          </div>
+    <div className="bg-white rounded-lg shadow-md overflow-hidden flex w-[500px] my-2">
+      <div className="flex justify-left w-fit">
+        {product.images && product.images.length > 0 && (
+          <Image
+            className=" h-full w-full object-cover overflow-hidden"
+            src={product.images[0].imageUrl}
+            alt={product.images[0].altText}
+            width={200}
+            height={200}
+          />
         )}
+      </div>
+      <div className="flex flex-col justify-between w-full">
+        <div className="p-4">
+          <h3 className="text-2xl font-light text-gray-800 truncate ">
+            {product.title}
+          </h3>
+          {/*  <p className="text-gray-600 text-sm mt-1">{product.description}</p> */}
+
+          <div className="flex items-center justify-between mt-2">
+            <span className="text-gray-800 subpixel-antialiased	 text-xl font-light	">
+              {product.price} SEK
+            </span>
+          </div>
+
+          {product.variations && product.variations.length > 0 && (
+            <div className="mt-4">
+              {/*  <h4 className="text-md font-semibold text-gray-800">Variations:</h4> */}
+              <ul className=" flex flex-row text-gray-700">
+                {product.variations.map((variation) => (
+                  <li key={variation.id} className="text-sm">
+                    <div className="flex flex-row mr-2 w-8 h-8 bg-zinc-900 justify-center text-white items-center rounded-lg hover:bg-zinc-700 transition-colors duration-300">
+                      {/* Size:  */}
+                      {variation.size.toUpperCase()}
+                    </div>
+                    {/* <div className="flex flex-row mr-2 w-20 h-8 bg-zinc-900 justify-center text-white items-center rounded-lg hover:bg-zinc-700 transition-colors duration-300">
+                      {variation.color}
+                    </div> */}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <Separator className="mt-4" />
+          <div className="flex flex-row justify-between">
+            <Button className="mt-4 text-black" variant={"outline"}>
+              Add to cart
+            </Button>
+            <Button className="mt-4 text-black" variant={"outline"}>
+              <HeartIcon className="w-6 h-6" />
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
