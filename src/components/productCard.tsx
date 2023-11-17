@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 import { HeartIcon, HeartFilledIcon } from "@radix-ui/react-icons";
+import SaveButton from "./saveButton";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
@@ -33,17 +34,18 @@ export default function ProductCard({ product }: { product: Product }) {
 
           {product.variations && product.variations.length > 0 && (
             <div className="mt-4">
-              {/*  <h4 className="text-md font-semibold text-gray-800">Variations:</h4> */}
-              <ul className=" flex flex-row text-gray-700">
-                {product.variations.map((variation) => (
-                  <li key={variation.id} className="text-sm">
+              <ul className="flex flex-row text-gray-700">
+                {[
+                  ...new Set(
+                    product.variations.map((variation) =>
+                      variation.size.toUpperCase()
+                    )
+                  ),
+                ].map((size, index) => (
+                  <li key={index} className="text-sm">
                     <div className="flex flex-row mr-2 w-8 h-8 bg-zinc-900 justify-center text-white items-center rounded-lg hover:bg-zinc-700 transition-colors duration-300">
-                      {/* Size:  */}
-                      {variation.size.toUpperCase()}
+                      {size}
                     </div>
-                    {/* <div className="flex flex-row mr-2 w-20 h-8 bg-zinc-900 justify-center text-white items-center rounded-lg hover:bg-zinc-700 transition-colors duration-300">
-                      {variation.color}
-                    </div> */}
                   </li>
                 ))}
               </ul>
@@ -54,9 +56,7 @@ export default function ProductCard({ product }: { product: Product }) {
             <Button className="mt-4 text-black" variant={"outline"}>
               Add to cart
             </Button>
-            <Button className="mt-4 text-black" variant={"outline"}>
-              <HeartIcon className="w-6 h-6" />
-            </Button>
+            <SaveButton />
           </div>
         </div>
       </div>

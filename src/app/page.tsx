@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import GetUserEmail from "@/components/auth/getUser";
+import Navbar from "@/components/navbar";
 
 export default async function Home() {
   return (
