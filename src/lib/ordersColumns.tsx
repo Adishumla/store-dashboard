@@ -55,7 +55,6 @@ export const columns: ColumnDef<Document>[] = [
         </Button>
       );
     },
-    /* make a cell where id is centered */
     cell: (info) => {
       const value = info.getValue<string>();
       return <span className="flex justify-center">{value}</span>;
@@ -121,15 +120,15 @@ export const columns: ColumnDef<Document>[] = [
     cell: (info) => (
       <ul>
         {info.getValue<Document[]>().map((item: Document, index: number) => {
-          const variation = item.product.variations.find(
+          const variation = item.product?.variations.find(
             (v: { _order: any }) => v._order === item.variationId
           );
           return (
             <li key={index}>
-              {item.product.title} - Qty: {item.quantity}
+              {item.product?.title} - Qty: {item.quantity}
               {variation && (
                 <span>
-                  - Size: {variation.size}, Color: {variation.color}
+                  - Size: {variation.size.Size}, Color: {variation.color.Color}
                 </span>
               )}
             </li>

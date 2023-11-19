@@ -1,5 +1,6 @@
 import { CollectionConfig } from "payload/types";
 import { isAdminFieldAccess } from "../access/isAdmin";
+import { lexicalEditor } from "@payloadcms/richtext-lexical";
 
 const Products: CollectionConfig = {
   slug: "products",
@@ -8,6 +9,9 @@ const Products: CollectionConfig = {
     read: () => true,
     update: isAdminFieldAccess,
     delete: isAdminFieldAccess,
+  },
+  admin: {
+    useAsTitle: "title",
   },
   fields: [
     {
@@ -18,32 +22,36 @@ const Products: CollectionConfig = {
     {
       name: "description",
       type: "textarea",
+      required: true,
     },
     {
       name: "price",
       type: "number",
       required: true,
     },
-    /* just take total from sizes stock maybe? */
-    /* {
-      name: "stock",
+    {
+      name: "discountPercentage",
       type: "number",
-      required: true,
-    }, */
-    /* get from variations */
-    /* {
-      name: "colors",
-      type: "array",
-      required: true,
-      minRows: 1,
-      fields: [
-        {
-          name: "color",
-          type: "text",
-          required: true,
-        },
+      label: "Discount Percentage",
+      admin: {
+        description: "Enter the discount percentage (without the % symbol).",
+      },
+    },
+    {
+      name: "status",
+      type: "select",
+      options: [
+        { label: "Active", value: "active" },
+        { label: "Out of Stock", value: "out-of-stock" },
+        { label: "Discontinued", value: "discontinued" },
       ],
-    }, */
+      defaultValue: "active",
+      required: true,
+      label: "Product Status",
+      admin: {
+        description: "Select the current status of the product.",
+      },
+    },
     {
       name: "variations",
       type: "array",
@@ -52,12 +60,14 @@ const Products: CollectionConfig = {
       fields: [
         {
           name: "size",
-          type: "text",
+          type: "relationship",
+          relationTo: "size",
           required: true,
         },
         {
           name: "color",
-          type: "text",
+          type: "relationship",
+          relationTo: "colors",
           required: true,
         },
         {
@@ -69,7 +79,19 @@ const Products: CollectionConfig = {
     },
     {
       name: "fabric",
-      type: "text",
+      type: "relationship",
+      relationTo: "fabrics",
+      required: false,
+    },
+    {
+      name: "gender",
+      type: "select",
+      options: [
+        { label: "unisex", value: "unisex" },
+        { label: "men", value: "men" },
+        { label: "women", value: "women" },
+      ],
+      defaultValue: "unisex",
       required: true,
     },
 

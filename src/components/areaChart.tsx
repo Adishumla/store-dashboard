@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import { AreaChart } from "@tremor/react";
 import { format } from "date-fns";
+import { AreaChart } from "@tremor/react";
 import { Document, Item } from "@/lib/type";
 import { Card } from "./ui/card";
 
@@ -16,14 +16,14 @@ const CategoryMonthlySales = ({ orders }: CategoryMonthlySalesProps) => {
   const salesByMonth = orders.reduce((acc: any, order) => {
     const monthYear = getMonthYear(order.orderDate);
     order.items.forEach((item: Item) => {
-      const category = item.product.category.title;
+      const category = item.product?.category.title;
       if (!acc[monthYear]) {
         acc[monthYear] = {};
       }
       if (!acc[monthYear][category]) {
         acc[monthYear][category] = 0;
       }
-      acc[monthYear][category] += item.quantity * item.product.price;
+      acc[monthYear][category] += item.quantity * item.product?.price;
     });
     return acc;
   }, {});
@@ -37,10 +37,12 @@ const CategoryMonthlySales = ({ orders }: CategoryMonthlySalesProps) => {
     chartData.push(monthData);
   });
 
+  chartData.sort((a, b) => a.name.localeCompare(b.name));
+
   const categories = Array.from(
     new Set(
       orders.flatMap((order) =>
-        order.items.map((item) => item.product.category.title)
+        order.items.map((item) => item.product?.category.title)
       )
     )
   );

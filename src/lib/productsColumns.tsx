@@ -53,8 +53,8 @@ export const productsColumns: ColumnDef<Product>[] = [
           <TableBody>
             {product.variations.map((variation: Variation) => (
               <TableRow key={variation.id}>
-                <TableCell>{variation.size}</TableCell>
-                <TableCell>{variation.color}</TableCell>
+                <TableCell>{variation.size.Size}</TableCell>
+                <TableCell>{variation.color.Color}</TableCell>
                 <TableCell>{variation.stock}</TableCell>
               </TableRow>
             ))}
@@ -66,6 +66,10 @@ export const productsColumns: ColumnDef<Product>[] = [
   {
     accessorKey: "fabric",
     header: "Fabric",
+    cell: (info) => {
+      const product: Product = info.row.original;
+      return product.fabric.name;
+    },
   },
   {
     accessorKey: "category",

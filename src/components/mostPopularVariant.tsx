@@ -16,7 +16,7 @@ export default function MostPopularVariant({ docs }: { docs: Document[] }) {
 
         if (variant) {
           const variantKey = `${item.product.title}`;
-          const variantDetails = `Size: ${variant.size}, Color: ${variant.color}`;
+          const variantDetails = `Size: ${variant.size.Size}, Color: ${variant.color.Color}`;
 
           if (!acc[variantKey]) {
             acc[variantKey] = { count: 0, details: variantDetails };

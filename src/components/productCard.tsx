@@ -2,8 +2,8 @@ import { Product } from "@/lib/type";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
-import { HeartIcon, HeartFilledIcon } from "@radix-ui/react-icons";
 import SaveButton from "./saveButton";
+import Link from "next/link";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
@@ -37,24 +37,41 @@ export default function ProductCard({ product }: { product: Product }) {
               <ul className="flex flex-row text-gray-700">
                 {[
                   ...new Set(
-                    product.variations.map((variation) =>
-                      variation.size.toUpperCase()
-                    )
+                    product.variations.map((variation) => variation.size.Size)
                   ),
                 ].map((size, index) => (
                   <li key={index} className="text-sm">
-                    <div className="flex flex-row mr-2 w-8 h-8 bg-zinc-900 justify-center text-white items-center rounded-lg hover:bg-zinc-700 transition-colors duration-300">
+                    <div className="flex flex-row mr-2 w-8 h-8 bg-zinc-900 justify-center text-white items-center rounded-lg hover:bg-zinc-700 transition-colors duration-100">
                       {size}
                     </div>
                   </li>
                 ))}
+              </ul>
+              <ul className="flex flex-row text-gray-700 mt-2">
+                {product.variations.map((variation, index) => {
+                  if (
+                    index === 0 ||
+                    product.variations[index - 1].color.Color !==
+                      variation.color.Color
+                  ) {
+                    return (
+                      <li key={index} className="text-sm">
+                        <div
+                          className="flex flex-row mr-2 w-6 h-6 justify-center items-center rounded-full transition-colors duration-100 border-[0.1px] border-zinc-900"
+                          style={{ backgroundColor: variation.color.hex }}
+                        ></div>
+                      </li>
+                    );
+                  }
+                  return null;
+                })}
               </ul>
             </div>
           )}
           <Separator className="mt-4" />
           <div className="flex flex-row justify-between">
             <Button className="mt-4 text-black" variant={"outline"}>
-              Add to cart
+              <Link href={`/${product.id}`}>View</Link>
             </Button>
             <SaveButton />
           </div>

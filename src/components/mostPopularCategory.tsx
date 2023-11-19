@@ -7,7 +7,7 @@ export default function MostPopularCategory({ docs }: { docs: Document[] }) {
   const categoryCounts = docs.reduce(
     (acc: Record<string, number>, order: Document) => {
       order.items.forEach((item: Item) => {
-        const categoryTitle: string = item.product.category.title;
+        const categoryTitle: string = item.product?.category.title;
         if (!acc[categoryTitle]) {
           acc[categoryTitle] = 0;
         }

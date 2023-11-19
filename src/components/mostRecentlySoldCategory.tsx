@@ -18,15 +18,13 @@ export default function MostRecentlySoldCategory({
     );
   }
 
-  // Sort the documents by orderDate in descending order
   const sortedDocs = [...docs].sort(
     (a, b) => new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime()
   );
 
-  // Find the category of the first item in the most recent order
   const mostRecentOrder = sortedDocs[0];
   const mostRecentlySoldCategory =
-    mostRecentOrder.items[0]?.product.category.title;
+    mostRecentOrder.items[0]?.product?.category.title;
 
   return (
     <Card className="flex flex-col gap-2 w-64 p-4">

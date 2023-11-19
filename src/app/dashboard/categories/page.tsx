@@ -25,12 +25,12 @@ interface Acc {
 
 const categories = orders.docs.reduce((acc: Acc, order: any) => {
   order.items.forEach((item: Item) => {
-    const categoryTitle: string = item.product.category.title;
+    const categoryTitle: string = item.product?.category.title;
     if (!acc[categoryTitle]) {
       acc[categoryTitle] = { count: 0, total: 0 };
     }
     acc[categoryTitle].count += item.quantity;
-    acc[categoryTitle].total += item.product.price * item.quantity;
+    acc[categoryTitle].total += item.product?.price * item.quantity;
   });
   return acc;
 }, {});
@@ -56,7 +56,7 @@ export default function Categories() {
             yAxisWidth={100}
             className=" p-1"
             categories={["count"]}
-            index="count"
+            index="category"
             colors={["indigo"]}
             showAnimation={true}
           />
@@ -66,7 +66,7 @@ export default function Categories() {
             data={categoriesData}
             yAxisWidth={100}
             className=" p-1"
-            index="total"
+            index="category"
             categories={["total"]}
             colors={["indigo"]}
             showAnimation={true}

@@ -9,6 +9,9 @@ import Products from "./collections/Products";
 import Categories from "./collections/Categories";
 import Media from "./collections/Media";
 import SubCategories from "./collections/SubCategory";
+import Fabrics from "./collections/Fabrics";
+import Colors from "./collections/Colors";
+import Size from "./collections/Size";
 
 //import { webpackBundler } from "@payloadcms/bundler-webpack"; // bundler-import
 
@@ -31,6 +34,9 @@ export default buildConfig({
     Categories,
     SubCategories,
     Media,
+    Fabrics,
+    Colors,
+    Size,
   ],
   globals: [
     // Your globals here

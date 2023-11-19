@@ -10,7 +10,7 @@ export interface Document {
   city: string;
   orderDate: string;
   items: Item[];
-  status: "shipped" | "delivered"; // Enumerate possible values if known
+  status: "shipped" | "delivered";
   total: number;
   updatedAt: string;
   createdAt: string;
@@ -24,13 +24,19 @@ export interface Item {
   product: Product;
 }
 
+export interface Fabrics {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+}
 export interface Product {
   id: number;
   title: string;
   description: string;
   price: number;
   variations: Variation[];
-  fabric: string;
+  fabric: Fabrics;
   category: Category;
   subCategory: SubCategory;
   images: Image[];
@@ -38,11 +44,37 @@ export interface Product {
   createdAt: string;
 }
 
+export interface Colors {
+  Color: any;
+  id: number;
+  title: string;
+  hex: string;
+  description: string;
+  updatedAt: string;
+  createdAt: string;
+}
+
+export interface Fabrics {
+  id: number;
+  title: string;
+  updatedAt: string;
+  createdAt: string;
+}
+
+export interface Size {
+  Size: any;
+  id: number;
+  title: string;
+  updatedAt: string;
+  createdAt: string;
+}
+
 export interface Variation {
   _order: number;
   id: string;
-  size: "m" | "l"; // Enumerate possible values if known
-  color: string;
+  size: Size;
+  fabric: Fabrics;
+  color: Colors;
   stock: number;
 }
 

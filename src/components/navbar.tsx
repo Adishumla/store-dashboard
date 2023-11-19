@@ -9,14 +9,14 @@ export default function Navbar() {
     <div className="flex flex-col justify-center items-center">
       <div className="flex flex-row justify-center items-center ">
         <Button
-          className="m-4 text-black absolute top-0 right-0 z-10"
+          className="m-4 absolute top-0 right-0 z-20"
           variant={"outline"}
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-black"
+              className="h-6 w-6 text-white"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -26,7 +26,7 @@ export default function Navbar() {
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-black"
+              className="h-6 w-6 text-white"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -41,12 +41,26 @@ export default function Navbar() {
           )}
         </Button>
       </div>
-      <div className="flex flex-col justify-center items-center absolute right-0 top-0">
+      <div className="flex flex-col justify-center items-center absolute right-0 top-0 z-10">
         <div
           className={`${
             isOpen ? "flex" : "hidden"
           } flex-col justify-center items-center gap-2 h-screen w-screen bg-zinc-900 p-4 `}
         >
+          <Button
+            variant={"link"}
+            asChild
+            className=" text-4xl"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <Link
+              className="text-black"
+              href="/"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              Home
+            </Link>
+          </Button>
           <Button
             variant={"link"}
             asChild
