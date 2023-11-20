@@ -2,6 +2,7 @@ import React from "react";
 import ProductCard from "@/components/productCard";
 import { Product } from "@/lib/type";
 import { products } from "@/lib/drizzleTest";
+import { Button } from "@/components/ui/button";
 
 export default function Dashboard() {
   return (

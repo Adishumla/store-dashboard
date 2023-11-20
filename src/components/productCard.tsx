@@ -71,7 +71,11 @@ export default function ProductCard({ product }: { product: Product }) {
           <Separator className="mt-4" />
           <div className="flex flex-row justify-between">
             <Button className="mt-4 text-black" variant={"outline"}>
-              <Link href={`/${product.id}`}>View</Link>
+              <Link
+                href={`/${product.gender}/${product.category.title}/${product.id}`}
+              >
+                View
+              </Link>
             </Button>
             <SaveButton />
           </div>

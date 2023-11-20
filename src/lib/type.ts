@@ -31,6 +31,7 @@ export interface Fabrics {
   createdAt: string;
 }
 export interface Product {
+  gender: string;
   id: number;
   title: string;
   description: string;
