@@ -26,4 +26,8 @@ const products = await payload.find({
   collection: "products",
 });
 
-export { orders, products, getOrders };
+const users = await payload.find({
+  collection: "users",
+});
+
+export { orders, products, users, getOrders };

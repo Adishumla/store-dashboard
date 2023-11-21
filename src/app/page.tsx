@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import GetUserEmail from "@/components/auth/getUser";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/navbarUtility";
 import Image from "next/image";
 import hero from "../public/hero.jpg";
 
