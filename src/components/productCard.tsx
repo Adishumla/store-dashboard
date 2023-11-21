@@ -72,7 +72,7 @@ export default function ProductCard({ product }: { product: Product }) {
           <div className="flex flex-row justify-between">
             <Button className="mt-4 text-black" variant={"outline"}>
               <Link
-                href={`/${product.gender}/${product.category.title}/${product.id}`}
+                href={`/${product.gender}/${product.category.title}/${product.subCategory.title}/${product.id}`}
               >
                 View
               </Link>

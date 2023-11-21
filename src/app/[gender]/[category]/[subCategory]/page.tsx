@@ -2,11 +2,9 @@ import React from "react";
 import ProductCard from "@/components/productCard";
 import { products } from "@/lib/drizzleTest";
 import { Product } from "@/lib/type";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 interface PageProps {
-  params: { gender: string; category?: string };
+  params: { gender: string; category?: string; subCategory?: string };
 }
 
 function transformToProduct(item: unknown): Product | null {
@@ -14,9 +12,10 @@ function transformToProduct(item: unknown): Product | null {
 }
 
 export default function Page({ params }: PageProps) {
-  const getProductsByGenderAndCategory = (
+  const getProductsByCriteria = (
     gender: string,
-    category?: string
+    category?: string,
+    subCategory?: string | undefined
   ): Product[] => {
     return products.docs
       .map(transformToProduct)
@@ -25,28 +24,23 @@ export default function Page({ params }: PageProps) {
           product !== null &&
           product.gender.toLowerCase() === gender.toLowerCase() &&
           (!category ||
-            product.category.title.toLowerCase() === category.toLowerCase())
+            product.category.title.toLowerCase() === category.toLowerCase()) &&
+          (!subCategory ||
+            product.subCategory.title.toLowerCase() ===
+              subCategory.toLowerCase())
       );
   };
 
-  const specificProducts = getProductsByGenderAndCategory(
+  const specificProducts = getProductsByCriteria(
     params.gender,
-    params.category
+    params.category,
+    params.subCategory
   );
   if (!specificProducts.length)
     return <p>No products found for this category.</p>;
 
   return (
     <>
-      {specificProducts.map((product) => (
-        <Button key={product.id}>
-          <Link
-            href={`/${product.gender}/${product.category.title}/${product.subCategory.title}`}
-          >
-            {product.subCategory.title}
-          </Link>
-        </Button>
-      ))}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {specificProducts.map((product) => (
           <ProductCard key={product.id} product={product} />

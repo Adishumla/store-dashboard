@@ -7,7 +7,7 @@ import { Toggle } from "@/components/ui/toggle";
 import Image from "next/image";
 
 interface PageProps {
-  params: { "product-id": string };
+  params: { productId: string };
 }
 
 export default function Page({ params }: PageProps) {
@@ -17,7 +17,7 @@ export default function Page({ params }: PageProps) {
     ) as Product | undefined;
   };
 
-  const specificProduct = getProductById(params["product-id"]);
+  const specificProduct = getProductById(params.productId);
   if (!specificProduct) return null;
 
   const uniqueColors = specificProduct.variations.reduce(
