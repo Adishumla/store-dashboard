@@ -38,15 +38,17 @@ export default function Page({ params }: PageProps) {
 
   return (
     <>
-      {specificProducts.map((product) => (
-        <Button key={product.id}>
-          <Link
-            href={`/${product.gender}/${product.category.title}/${product.subCategory.title}`}
-          >
-            {product.subCategory.title}
-          </Link>
-        </Button>
-      ))}
+      <div className="flex flex-row gap-4 justify-center items-center overflow-x-scroll mb-8">
+        {specificProducts.map((product) => (
+          <Button key={product.id}>
+            <Link
+              href={`/${product.gender}/${product.category.title}/${product.subCategory.title}`}
+            >
+              {product.subCategory.title}
+            </Link>
+          </Button>
+        ))}
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {specificProducts.map((product) => (
           <ProductCard key={product.id} product={product} />

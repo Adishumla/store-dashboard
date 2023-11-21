@@ -8,7 +8,8 @@ import { cookies } from "next/headers";
 import { users } from "@/lib/drizzleTest";
 import { Category, SubCategory, User } from "@/lib/type";
 
-export default function Navbar() {
+export default async function Navbar() {
+  const cookieStore = cookies();
   const categoriesByGender = (products.docs as unknown as Product[]).reduce(
     (acc, product) => {
       const gender = product.gender;
@@ -30,10 +31,19 @@ export default function Navbar() {
     {} as Record<string, Record<string, Set<string>>>
   );
 
-  let userRoles = (users.docs as unknown as User[]).map(
-    (user) => user.roles[0]
-  );
-  console.log(userRoles);
+  const token = cookieStore.get("payload-token")?.value;
+
+  const authHeaders = {
+    Authorization: `JWT ${token}`,
+  };
+
+  const response = await fetch(`${process.env.ORIGIN}/api/users/me`, {
+    credentials: "include",
+    headers: authHeaders,
+  });
+
+  const data = await response.json();
+  const userRoles = data.user?.roles || ["none"];
 
   const sortedCategoriesByGender = Object.fromEntries(
     Object.entries(categoriesByGender).map(([gender, categories]) => [
