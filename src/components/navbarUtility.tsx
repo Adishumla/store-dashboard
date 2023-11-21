@@ -12,7 +12,21 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
-export default function navbarUtility({ categories, userRole }) {
+import { Category } from "@/lib/type";
+
+interface CategoryStructure {
+  [gender: string]: { [category: string]: string[] };
+}
+
+interface NavbarUtilityProps {
+  categories: CategoryStructure;
+  userRole: string;
+}
+
+export default function NavbarUtility({
+  categories,
+  userRole,
+}: NavbarUtilityProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   console.log(userRole);

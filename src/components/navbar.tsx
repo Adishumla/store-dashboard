@@ -6,27 +6,33 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 import { users } from "@/lib/drizzleTest";
+import { Category, SubCategory, User } from "@/lib/type";
 
-export default async function Navbar(req: NextRequest) {
-  const categoriesByGender = products.docs.reduce((acc, product) => {
-    const gender = product.gender;
-    const category = product.category.title;
-    const subCategory = product.subCategory.title;
+export default function Navbar() {
+  const categoriesByGender = (products.docs as unknown as Product[]).reduce(
+    (acc, product) => {
+      const gender = product.gender;
+      const category = product.category.title;
+      const subCategory = product.subCategory.title;
 
-    if (!acc[gender]) {
-      acc[gender] = {};
-    }
+      if (!acc[gender]) {
+        acc[gender] = {};
+      }
 
-    if (!acc[gender][category]) {
-      acc[gender][category] = new Set();
-    }
+      if (!acc[gender][category]) {
+        acc[gender][category] = new Set();
+      }
 
-    acc[gender][category].add(subCategory);
+      acc[gender][category].add(subCategory);
 
-    return acc;
-  }, {} as Record<string, Record<string, Set<string>>>);
+      return acc;
+    },
+    {} as Record<string, Record<string, Set<string>>>
+  );
 
-  let userRoles = users.docs.map((user) => user.roles[0]);
+  let userRoles = (users.docs as unknown as User[]).map(
+    (user) => user.roles[0]
+  );
   console.log(userRoles);
 
   const sortedCategoriesByGender = Object.fromEntries(

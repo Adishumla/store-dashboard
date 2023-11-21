@@ -16,6 +16,14 @@ export interface Document {
   createdAt: string;
 }
 
+export interface User {
+  id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  roles: string[];
+}
+
 export interface Item {
   variationId: number;
   _order: number;
