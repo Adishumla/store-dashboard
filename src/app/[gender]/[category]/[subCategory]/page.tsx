@@ -2,6 +2,7 @@ import React from "react";
 import ProductCard from "@/components/productCard";
 import { products } from "@/lib/drizzleTest";
 import { Product } from "@/lib/type";
+import FilterProductCards from "@/components/filterProductCards";
 
 interface PageProps {
   params: { gender: string; category?: string; subCategory?: string };
@@ -36,16 +37,31 @@ export default function Page({ params }: PageProps) {
     params.category,
     params.subCategory
   );
-  if (!specificProducts.length)
+
+  if (!specificProducts.length) {
     return <p>No products found for this category.</p>;
+  }
+
+  const colorSet = new Set<string>();
+  const sizeSet = new Set<string>();
+
+  specificProducts.forEach((product) => {
+    product.variations.forEach((variation) => {
+      colorSet.add(variation.color.Color);
+      sizeSet.add(variation.size.Size);
+    });
+  });
+
+  const uniqueColors = Array.from(colorSet);
+  const uniqueSizes = Array.from(sizeSet);
 
   return (
-    <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {specificProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
-    </>
+    <FilterProductCards
+      specificProducts={specificProducts}
+      colors={uniqueColors}
+      sizes={uniqueSizes}
+      category={params.subCategory}
+      isGenderPage={false}
+    />
   );
 }

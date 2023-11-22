@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden flex w-[500px] my-2">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden flex max-w-[500px] mx-2">
       <div className="flex justify-left w-fit">
         {product.images && product.images.length > 0 && (
           <Image

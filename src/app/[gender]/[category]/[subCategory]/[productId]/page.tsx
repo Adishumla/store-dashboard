@@ -5,6 +5,7 @@ import { Select } from "@/components/ui/select";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Toggle } from "@/components/ui/toggle";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 interface PageProps {
   params: { productId: string };
@@ -30,32 +31,34 @@ export default function Page({ params }: PageProps) {
 
   return (
     <div className="container mx-auto p-4 w-screen h-screen overflow-hidden">
-      <div className="flex flex-col md:flex-row md:items-start p-2">
-        <div className="flex-shrink-0 relative h-screen overflow-y-scroll no-scrollbar gap-4 flex flex-col pb-8">
-          {specificProduct.images.map((image, index) => (
-            <Image
-              key={index}
-              width={800}
-              height={800}
-              src={image.imageUrl}
-              alt={image.altText}
-              className="rounded-lg shadow-md"
-            />
-          ))}
+      <div className="flex flex-col md:flex-row md:items-start p-2 pt-12">
+        <div className="min-w-[300px] md:w-1/2">
+          <div className="flex-shrink-0 relative md:h-screen overflow-scroll no-scrollbar gap-4 flex flex-row md:flex-col pb-8">
+            {specificProduct.images.map((image, index) => (
+              <Image
+                key={index}
+                width={800}
+                height={800}
+                src={image.imageUrl}
+                alt={image.altText}
+                className="rounded-lg shadow-md"
+              />
+            ))}
+          </div>
+          <div className="relative md:none md:bottom-1/2 md:left-4 md:right-0 flex md:w-20 gap-2 md:flex-col w-screen overflow-y-auto ">
+            {specificProduct.images.map((image, index) => (
+              <Image
+                key={index}
+                src={image.imageUrl}
+                alt={`Thumbnail ${index}`}
+                width={100}
+                height={100}
+                className="rounded-lg shadow-sm w-12 h-12 md:w-20 md:h-20"
+              />
+            ))}
+          </div>
         </div>
-        <div className="fixed bottom-1/2 left-4 right-0 flex w-20 gap-2 flex-col">
-          {specificProduct.images.map((image, index) => (
-            <Image
-              key={index}
-              src={image.imageUrl}
-              alt={`Thumbnail ${index}`}
-              width={100}
-              height={100}
-              className="rounded-lg shadow-sm"
-            />
-          ))}
-        </div>
-        <div className="mt-4 md:mt-0 md:ml-6">
+        <div className="mt-4 md:mt-0 md:ml-6 min-w-[200px]">
           <h1 className="text-2xl font-bold mb-2">{specificProduct.title}</h1>
           <p className="text-gray-700">{specificProduct.description}</p>
           <div className="mt-3">
@@ -83,7 +86,7 @@ export default function Page({ params }: PageProps) {
             </div>
           </div>
           <div className="mt-2 flex flex-row items-center">
-            <span className="text-lg font-semibold">Colors:</span>
+            <span className="text-lg font-semibold pr-2">Colors: </span>
             <ToggleGroup type="single">
               {Array.from(uniqueColors).map((color, index) => (
                 <ToggleGroupItem
@@ -104,6 +107,7 @@ export default function Page({ params }: PageProps) {
               ))}
             </ToggleGroup>
           </div>
+          <Button className="mt-4 ">Add to cart</Button>
         </div>
       </div>
     </div>
