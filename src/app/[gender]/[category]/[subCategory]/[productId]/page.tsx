@@ -30,7 +30,7 @@ export default function Page({ params }: PageProps) {
   );
 
   return (
-    <div className="container mx-auto p-4 w-screen h-screen overflow-hidden">
+    <div className="container mx-auto p-4 w-screen h-full md:h-screen overflow-hidden">
       <div className="flex flex-col md:flex-row md:items-start p-2 pt-12">
         <div className="min-w-[300px] md:w-1/2">
           <div className="flex-shrink-0 relative md:h-screen overflow-scroll no-scrollbar gap-4 flex flex-row md:flex-col pb-8">
