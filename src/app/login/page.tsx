@@ -13,7 +13,7 @@ import {
 
 export default function Register() {
   return (
-    <div className="flex flex-col items-center justify-center w-full h-screen space-y-8">
+    <div className="flex flex-col items-center justify-center w-full h-screen space-y-8 px-4">
       <section className="w-full max-w-[400px] outline p-12 outline-zinc-800 rounded-xl">
         <Tabs defaultValue="login">
           <TabsList className="grid w-full grid-cols-2">
