@@ -43,29 +43,29 @@ export default function Categories() {
   }));
 
   return (
-    <div className="">
-      <div className="flex flex-row gap-1 my-1">
+    <div>
+      <div className="flex flex-row sm:flex-row gap-1 my-1">
         <MostPopularCategory docs={orders.docs as unknown as Document[]} />
         <MostRecentlySoldCategory docs={orders.docs as unknown as Document[]} />
       </div>
       <CategoryMonthlySales orders={orders.docs as unknown as Document[]} />
-      <div className="flex flex-row gap-4 my-1">
-        <Card className="mt-2 w-[600px] h-[320px]">
+      <div className="flex flex-col sm:flex-row gap-4 my-1">
+        <Card className="mt-2 w-full h-[320px] overflow-x-auto">
           <BarChart
             data={categoriesData}
             yAxisWidth={100}
-            className=" p-1"
+            className="p-1"
             categories={["count"]}
             index="category"
             colors={["indigo"]}
             showAnimation={true}
           />
         </Card>
-        <Card className="mt-2 w-[600px] h-[320px]">
+        <Card className="mt-2 w-full  h-[320px] overflow-x-auto">
           <BarChart
             data={categoriesData}
             yAxisWidth={100}
-            className=" p-1"
+            className="p-1"
             index="category"
             categories={["total"]}
             colors={["indigo"]}
@@ -73,7 +73,7 @@ export default function Categories() {
           />
         </Card>
       </div>
-      <Card className="mt-6">
+      <Card className="mt-6 overflow-x-auto">
         <DataTable
           columns={categoriesColumns}
           data={categoriesData as unknown as Document[]}

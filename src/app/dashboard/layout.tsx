@@ -6,6 +6,7 @@ import "./../globals.css";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import DashboardNav from "@/components/dashboardNav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,8 @@ export default function DashboardLayout({
   return (
     <div className="flex flex-row w-full h-screen">
       {/* side nav */}
-      <Card className="h-full p-2">
+      <DashboardNav />
+      {/*  <Card className="h-full p-2">
         <div className="flex flex-col w-full h-full space-y-2">
           <Button variant={"ghost"} size={"default"}>
             <Link href="/dashboard">Dashboard</Link>
@@ -29,7 +31,7 @@ export default function DashboardLayout({
             <Link href="/dashboard/products">Products</Link>
           </Button>
         </div>
-      </Card>
+      </Card> */}
       {/* main */}
       <section className="flex flex-col flex-1 w-full h-screen p-4 space-y-4 overflow-scroll">
         {children}

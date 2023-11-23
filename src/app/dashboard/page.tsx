@@ -27,16 +27,16 @@ import TotalOrdersCard from "@/components/totalOrdersCard";
 
 export default function Dashboard() {
   return (
-    <div>
-      <div className="flex flex-row gap-4 my-2">
+    <div className="flex flex-col gap-4 my-2">
+      <div className="flex flex-col md:flex-row gap-4">
         <TotalSales docs={orders.docs as unknown as Document[]} />
         <TotalOrdersCard docs={orders.docs as unknown as Document[]} />
       </div>
-      <div className="flex gap-4">
-        <Card className="w-[600px] h-full flex justify-center items-center">
+      <div className="flex flex-col md:flex-row gap-4">
+        <Card className="w-full md:w-1/2 h-full flex justify-center items-center">
           <LineMonthlySales orders={orders} />
         </Card>
-        <Card className="w-[600px] h-[320px]">
+        <Card className="w-full md:w-1/2 h-auto md:h-[320px]">
           <Donut orders={orders} />
         </Card>
       </div>

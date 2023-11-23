@@ -50,10 +50,6 @@ const Dashboard = ({ orders }: any) => {
     ? cities.filter((city) => city.name === (value as { name: string }).name)
     : cities;
 
-  useEffect(() => {
-    console.log("filteredData", filteredData);
-  }, [filteredData]);
-
   return (
     <>
       <div className="flex flex-row h-full">

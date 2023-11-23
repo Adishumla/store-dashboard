@@ -1,9 +1,10 @@
 export function prepareDonutData(orders: any[]) {
   const cityTotals = orders.reduce((acc, order) => {
-    if (acc[order.city]) {
-      acc[order.city] += order.total;
+    const city = order.city.toLowerCase();
+    if (acc[city]) {
+      acc[city] += order.total;
     } else {
-      acc[order.city] = order.total;
+      acc[city] = order.total;
     }
     return acc;
   }, {});

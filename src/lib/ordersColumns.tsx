@@ -17,6 +17,14 @@ import {
   DotsHorizontalIcon,
 } from "@radix-ui/react-icons";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  TableCell,
+  TableHeader,
+  TableRow,
+  Table,
+  TableBody,
+} from "@/components/ui/table";
+import { Separator } from "@/components/ui/separator";
 
 export const columns: ColumnDef<Document>[] = [
   {
@@ -102,41 +110,45 @@ export const columns: ColumnDef<Document>[] = [
   },
   {
     accessorKey: "items",
-    header: ({ column }) => {
+    header: "Items",
+    cell: (info) => {
+      const items = info.getValue<Document[]>();
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Items
-          <CaretSortIcon
-            className={`ml-2 h-4 w-4 ${
-              column.getIsSorted() === "asc" ? "transform rotate-180" : ""
-            }`}
-          />{" "}
-        </Button>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableCell>Product</TableCell>
+              <TableCell>Quantity</TableCell>
+              <TableCell>Size</TableCell>
+              <TableCell>Color</TableCell>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {items.map((item, index) => {
+              const variation = item.product?.variations.find(
+                (v: { _order: any }) => v._order === item.variationId
+              );
+              return (
+                <TableRow key={index}>
+                  <TableCell className="w-44 text-left">
+                    {item.product?.title}
+                  </TableCell>
+                  <TableCell className="text-center">{item.quantity}</TableCell>
+                  <TableCell className="text-center">
+                    {variation ? variation.size.Size : "N/A"}
+                  </TableCell>
+                  <TableCell>
+                    {variation ? variation.color.Color : "N/A"}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
       );
     },
-    cell: (info) => (
-      <ul>
-        {info.getValue<Document[]>().map((item: Document, index: number) => {
-          const variation = item.product?.variations.find(
-            (v: { _order: any }) => v._order === item.variationId
-          );
-          return (
-            <li key={index}>
-              {item.product?.title} - Qty: {item.quantity}
-              {variation && (
-                <span>
-                  - Size: {variation.size.Size}, Color: {variation.color.Color}
-                </span>
-              )}
-            </li>
-          );
-        })}
-      </ul>
-    ),
   },
+
   {
     accessorKey: "city",
     header: ({ column }) => {
