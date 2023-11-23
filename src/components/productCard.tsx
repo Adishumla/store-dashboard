@@ -11,7 +11,7 @@ export default function ProductCard({ product }: { product: Product }) {
       <div className="flex justify-left w-fit">
         {product.images && product.images.length > 0 && (
           <Image
-            className=" h-full w-full object-cover overflow-hidden"
+            className=" h-full min-w-52 w-52 md:w-full object-cover overflow-hidden"
             src={product.images[0].imageUrl}
             alt={product.images[0].altText}
             width={200}
